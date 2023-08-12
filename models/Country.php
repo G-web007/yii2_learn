@@ -27,6 +27,7 @@ class Country extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['code'], 'required'],
             [['name'], 'required'],
             [['population'], 'integer'],
             [['name'], 'string', 'max' => 52],
