@@ -1,10 +1,12 @@
 <?php
 
 use app\models\Country;
+use yii\bootstrap5\LinkPager;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+
 
 /** @var yii\web\View $this */
 /** @var app\models\CountrySearch $searchModel */
@@ -37,9 +39,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'urlCreator' => function ($action, Country $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'code' => $model->code]);
                  }
-            ],
+            ],   
+        ],
+        'pager' => [
+            'class' => LinkPager::class,
         ],
     ]); ?>
-
 
 </div>

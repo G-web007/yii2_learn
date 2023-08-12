@@ -7,6 +7,7 @@ use app\models\CountrySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 /**
  * CountryController implements the CRUD actions for Country model.
@@ -40,6 +41,15 @@ class CountryController extends Controller
     {
         $searchModel = new CountrySearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+
+        $query = Country::find();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
